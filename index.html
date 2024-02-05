@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Slide Navbar</title>
+	<link rel="stylesheet" type="text/css" href="slide navbar style.css">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+</head>
+<style>
+    body{
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	font-family: 'Jost', sans-serif;
+	background-image: url("background\ img.jpg");
+}
+.main{
+	width: 350px;
+	height: 560px;
+	background: white;
+	border-radius: 10px;
+	box-shadow: 5px 20px 50px #000;
+}
+
+.signup{
+	position: relative;
+	width:100%;
+	height: 100%;
+}
+
+input{
+	width: 60%;
+	height: 20px;
+	background: #e0dede;
+	justify-content: center;
+	display: flex;
+	margin: 20px auto;
+	padding: 10px;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+}
+button{
+	width: 60%;
+	height: 40px;
+	margin: 10px auto;
+	justify-content: center;
+	display: block;
+	color: #fff;
+	background: burlywood;
+	font-size: 1em;
+	font-weight: bold;
+	margin-top: 20px;
+	outline: none;
+	border: none;
+	border-radius: 5px;
+	transition: .2s ease-in;
+	cursor: pointer;
+}
+button:hover{
+	background: black;
+	color: #fff;
+}
+.Error{
+    color: red;
+    display: flex;
+    justify-content: center;
+    
+}
+
+</style>
+<body>
+	<div class="main">  	
+		
+			<div class="signup">
+				<form id="signupForm" onsubmit="validateForm(event)">
+					<h1 style="text-align: center;color: black;">Sign Up</h1>
+					<input type="text" name="txt" placeholder="User name" id="username" required><span id="usernameError" class="Error" ></span>
+					<input type="email" name="email" placeholder="Email" id="email" required><span id="EmailError" class="Error" ></span>
+					<input type="password" name="pswd" placeholder="Password" id="password" required><span id="PasswordError" class="Error" ></span>
+                    <input type="text" name="txt" placeholder="MM/DD/YYYY" id="date" required><span id="DateError" class="Error" ></span>
+                    <input type="text" name="txt" placeholder="00000000000" id="phnum" required><span id="PhnumError" class="Error" ></span>
+					<button>Sign up</button>
+				</form>
+			</div>
+
+	
+	</div>
+    <script>
+function validateForm(event){
+            
+           event.preventDefault();
+       
+           
+           const username = document.getElementById('username').value;
+           const email = document.getElementById('email').value;
+           const password = document.getElementById('password').value;
+           const date = document.getElementById('date').value;
+           const phnum = document.getElementById('phnum').value;
+           
+
+
+       
+           
+           const usernameRegex = /^[A-Za-z0-9,._]{3,16}$/;
+           const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+           const passwordRegex = /^[a-zA-Z0-9_]{1,10}$/;
+           const dateRegex = /^[0-9]{1,2}-[0-9]{1,2}-[0-9]{1,4}$/;
+           const phnumRegex = /^[0-9]{1,11}$/;
+       
+           
+           const usernameIsValid = usernameRegex.test(username);
+           const emailIsValid = emailRegex.test(email);
+           const passwordIsValid = passwordRegex.test(password);
+           const dateIsValid = dateRegex.test(date);
+           const phnumIsValid = phnumRegex.test(phnum);
+
+          
+           document.getElementById('usernameError').textContent = usernameIsValid ? '' : 'Invalid username';
+           document.getElementById('EmailError').textContent = emailIsValid ? '' : 'Invalid email';
+           document.getElementById('PasswordError').textContent = passwordIsValid ? '' : 'Password must be at least 10 character and use _'
+           document.getElementById('DateError').textContent = dateIsValid ? '' : ' Insert your correct format date';
+           document.getElementById('PhnumError').textContent = phnumIsValid ?'' : 'Insert Your correct number';
+    
+
+           if(usernameIsValid && emailIsValid && passwordIsValid && dateIsValid && phnumIsValid){
+               alert ('Your Sign up form subbmitted successfully!');
+           }
+       
+       
+        }
+    </script>
+</body>
+</html>

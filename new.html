@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+     .error{
+        color: red;
+     }
+    </style>
+</head>
+<body>
+   <h2>signupForm</h2>
+     
+    <form id="signupForm" onsubmit="validateForm(event)">
+        <label for="username">Username :</label>
+        <input type="text"  id="username" name="username" required>
+        <span id="usernameError" class="error"></span>
+        <br><br>  
+
+        <label for="email">Email:</label>
+        <input type="email"  id="email" name="email" required>
+        <span id="emailError" class="error"></span>
+        <br><br>
+        
+        <label for="password">Password:</label>
+        <input type="password"  id="password" name="password" required>
+        <span id="passwordError" class="error"></span>
+        <br><br>
+ <input type="submit" value="sign up">
+    </form>
+
+    <script>
+ function validateForm(event){
+      //prevent the form from submitting
+    event.preventDefault();
+
+    //Get form Elements
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    //Regular expressions for validation
+    const usernameRegex =  /^[a-zA-Z0-9_]{3,20}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+   const passwordRegex = /^[A-Za-z]+@[0-9]{3,10}$/;
+
+    //Validation
+    const usernameIsValid = usernameRegex.test(username);
+    const emailIsValid = emailRegex.test(email);
+    const passwordIsValid = passwordRegex.test(password);
+
+   //Display Validation Error
+    document.getElementById('usernameError').textContent = usernameIsValid ? '' : 'Invalid username';
+    document.getElementById('emailError').textContent = emailIsValid ? '' : 'Invalid email';
+    document.getElementById('passwordError').textContent = passwordIsValid ? '' : 'Password must be at least 6 character'
+    //If all fields are valid, you can proceed with form submission 
+    if(usernameIsValid && emailIsValid && passwordIsValid){
+        alert ('Form submitted successfully!');
+    //Add logic for actual form submission or redirect
+    }
+
+
+ }
+
+    </script>
+</body>
+</html>
